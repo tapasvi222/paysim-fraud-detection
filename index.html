@@ -1,0 +1,127 @@
+<head>
+    <meta charset="UTF-8">
+    <title>Transaction Form</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        padding: 20px;
+        background: #f4f4f4;
+      }
+      h2 {
+        text-align: center;
+      }
+      form {
+        background: #fff;
+        padding: 20px;
+        max-width: 600px;
+        margin: auto;
+        border-radius: 8px;
+        box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      }
+      .form-group {
+        margin-bottom: 15px;
+      }
+      label {
+        display: block;
+        margin-bottom: 5px;
+        font-weight: bold;
+      }
+      input[type="number"],
+      select {
+        width: 100%;
+        padding: 8px;
+        box-sizing: border-box;
+      }
+      button {
+        background: #28a745;
+        color: white;
+        border: none;
+        padding: 10px 15px;
+        border-radius: 5px;
+        cursor: pointer;
+        width: 100%;
+        font-size: 16px;
+      }
+      button:hover {
+        background: #218838;
+      }
+    </style>
+  </head>
+  <body>
+  
+    <h2>Transaction Input Form</h2>
+    <form id="transactionForm" method="POST" action="/predict">
+        <div class="form-group">
+            <label for="step">Step</label>
+            <input type="number" id="step" name="step" placeholder="Enter Step">
+        </div>
+        <div class="form-group">
+            <label for="amount">Amount</label>
+            <input type="number" id="amount" name="amount" placeholder="Enter Amount">
+        </div>
+        <div class="form-group">
+            <label for="oldbalanceOrg">Old Balance Origin</label>
+            <input type="number" id="oldbalanceOrg" name="oldbalanceOrg" placeholder="Enter Old Balance Origin">
+        </div>
+        <div class="form-group">
+            <label for="newbalanceOrig">New Balance Origin</label>
+            <input type="number" id="newbalanceOrig" name="newbalanceOrig" placeholder="Enter New Balance Origin">
+        </div>
+        <div class="form-group">
+            <label for="oldbalanceDest">Old Balance Destination</label>
+            <input type="number" id="oldbalanceDest" name="oldbalanceDest" placeholder="Enter Old Balance Destination">
+        </div>
+        <div class="form-group">
+            <label for="newbalanceDest">New Balance Destination</label>
+            <input type="number" id="newbalanceDest" name="newbalanceDest" placeholder="Enter New Balance Destination">
+        </div>
+
+      <div class="form-group">
+        <label for="isFlaggedFraud">Is Flagged Fraud</label>
+        <input type="number" id="isFlaggedFraud" name="isFlaggedFraud" min="0" max="1" value="0">
+      </div>
+  
+      <!-- Single Dropdown for Transaction Type -->
+      <div class="form-group">
+        <label for="transactionType">Transaction Type</label>
+        <select id="transactionType" name="transactionType">
+          <option value="CASH_IN">CASH_IN</option>
+          <option value="CASH_OUT">CASH_OUT</option>
+          <option value="DEBIT">DEBIT</option>
+          <option value="PAYMENT" selected>PAYMENT</option>
+          <option value="TRANSFER">TRANSFER</option>
+        </select>
+      </div>
+  
+      <!-- Hidden inputs for one-hot encoding -->
+      <input type="hidden" id="type_CASH_IN" name="type_CASH_IN" value="0">
+      <input type="hidden" id="type_CASH_OUT" name="type_CASH_OUT" value="0">
+      <input type="hidden" id="type_DEBIT" name="type_DEBIT" value="0">
+      <input type="hidden" id="type_PAYMENT" name="type_PAYMENT" value="1">
+      <input type="hidden" id="type_TRANSFER" name="type_TRANSFER" value="0">
+  
+      <button type="submit">Submit</button>
+    </form>
+  
+    <script>
+      const transactionTypeDropdown = document.getElementById("transactionType");
+  
+      const updateTransactionType = () => {
+        const types = ["CASH_IN", "CASH_OUT", "DEBIT", "PAYMENT", "TRANSFER"];
+        const selected = transactionTypeDropdown.value;
+        types.forEach(type => {
+          const input = document.getElementById(`type_${type}`);
+          input.value = (type === selected) ? "1" : "0";
+        });
+      };
+  
+      transactionTypeDropdown.addEventListener("change", updateTransactionType);
+  
+      // Set initial values on load
+      updateTransactionType();
+    </script>
+  
+  </body>
+  </html>
+  
+
