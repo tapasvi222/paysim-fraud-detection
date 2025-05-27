@@ -1,7 +1,9 @@
 # paysim-fraud-detection🔴
 A machine learning project using the PaySim dataset to detect fraudulent financial transactions. The model analyzes transaction patterns to identify potential fraud based on features like transaction type, amount, balance changes, and more.
+
 **#introduction🚀**
 In this project, I worked on detecting fraudulent transactions using the PaySim dataset, which simulates real mobile money transfers. The main goal was to understand the patterns of fraudulent behavior and build a machine learning model that can help identify these suspicious transactions effectively.I also developed a simple Flask web app where using input transaction details and detecting fraud predictions.
+
 **Data Set Overview📊**
 The PaySim dataset simulates mobile money transactions and includes different types of transactions like cash-in ,cash-out,Transfer, Payment.Each record has details like the transaction amount, type, and account balances before and after the transaction for both the sender and receiver. This helps us understand transaction behavior better and build models that can spot fraud effectively.
 **columns used in dataset📚**
@@ -15,11 +17,13 @@ The PaySim dataset simulates mobile money transactions and includes different ty
    **newbalanceDest**: The receiver’s account balance after the amount received.
    **isFraud**: It tells whether the transaction is fraudulent(1) or non-fraud(0).
    **isFlaggedFraud**: This indicates whether a transaction was flagged as suspicious or not.
+
  **#Data cleaning🧹**
   **✅checked for missing values** : Used isnull().sum() to identify missing values in the dataset. Found two missing values isFraud and  isFlaggedFraud.
   **🗑️ handling missing values**: Removed null values in these rows using dropna(). This made the data more integrated and consistent
   **☑️checked for duplicates**: Used duplicated().sum() to check for any duplicate records in the dataset. No duplicate rows were found in my data.
   **📉detecting and removing outliers**: Outliers were identified using box plots and statistical methods like the Interquartile Range (IQR). Values outside the defined boundaries were removed to keep the data clean and consistent.
+
 **Data transformation🔄**
 In this step, the type column was transformed using one-hot encoding  to convert it into a numerical format which is suitable for machine learning models.
  **steps followed**
