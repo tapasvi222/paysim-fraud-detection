@@ -49,8 +49,11 @@ In this step, the type column was transformed using one-hot encoding  to convert
  **steps followed**
  
    1)Identified unique categories in the type column.
+   
    2)Applied one-hot encoding using pandas.get_dummies() and created new binary columns like type_CASH_IN, type_CASH_OUT, type_DEBIT, type_PAYMENT, and type_TRANSFER.
+   
    3)Ensured all expected encoded columns are present if not added missing ones with default value 0.
+   
    4)Converted encoded columns to integer type for consistency.
 
 
