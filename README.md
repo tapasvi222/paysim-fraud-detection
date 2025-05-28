@@ -56,6 +56,21 @@ In this step, the type column was transformed using one-hot encoding  to convert
    
    4)Converted encoded columns to integer type for consistency.
 
+**Feature Engineering 🔑**
+In this step, we selected and prepared the most meaningful input features to train our fraud detection model. These input columns help the model learn the difference between genuine and fraudulent transactions.⚠️
+
+Key inputs included:
+
+Transaction type (one-hot encoded): type_CASH_IN, type_CASH_OUT, type_DEBIT, type_PAYMENT, type_TRANSFER.
+
+Transaction amount 
+
+Sender’s balance before and after the transaction: oldbalanceOrg, newbalanceOrig 
+
+Receiver’s balance before and after the transaction: oldbalanceDest, newbalanceDest 
+
+isFraud 🚨 – Indicates whether the transaction is fraudulent (1) or not (0)
+
 
 
  
