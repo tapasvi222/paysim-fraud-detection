@@ -57,9 +57,10 @@ In this step, the type column was transformed using one-hot encoding  to convert
    4)Converted encoded columns to integer type for consistency.
 
 **Feature Engineering 🔑**
+
 In this step, we selected and prepared the most meaningful input features to train our fraud detection model. These input columns help the model learn the difference between genuine and fraudulent transactions.⚠️
 
-Key inputs included:
+ Key inputs included:
 
 Transaction type (one-hot encoded): type_CASH_IN, type_CASH_OUT, type_DEBIT, type_PAYMENT, type_TRANSFER.
 
@@ -69,8 +70,34 @@ Sender’s balance before and after the transaction: oldbalanceOrg, newbalanceOr
 
 Receiver’s balance before and after the transaction: oldbalanceDest, newbalanceDest 
 
-isFraud 🚨 – Indicates whether the transaction is fraudulent (1) or not (0)
+isFraud 🚨 – Indicates whether the transaction is fraudulent (1) or not (0).
 
+**Model building🧱**
+
+  In this step, I focused on comparing three different machine learning models: Logistic Regression (LR), Random Forest (RF), and Decision Tree (DT), to identify which performed best in detecting fraudulent transactions.
+
+  To begin, I split the dataset into input features and the target column (isFraud). Using train_test_split(), I divided the data into training and testing sets (80/20 split) to evaluate model performance properly.
+
+  After training all three models, I compared their metrices like accuracy, precision, recall, and F1-score. Among them, the Decision Tree classifier gave the best performance, so i  selected it for the final model.
+
+**Flask Web App and Pickle Integration🌐**
+
+  To make the fraud detection model more interactive and user-friendly, I built a simple Flask web application that allows users to enter input transaction details and get instant fraud predictions.
+
+  The trained Decision Tree model was saved using Python’s pickle module, which allowed me to load the model into the Flask app.
+
+  Users can enter values like transaction type, amount, and balances. When they submit the form, the app processes the input, runs it to the model, and displays whether the transaction is predicted to be fraudulent or not.
+
+**output🎏**
+
+Once the user enters the transaction details in the web app and clicks submit, the model checks the input and instantly gives a prediction Whether fraud or not.
+
+If the transaction looks normal, it shows a message like: **Fraud Detection: 0.0**.
+
+If the model finds the transaction suspicious, it returns: **Fraud Detection: 1.0**.
+
+
+ 
 
 
  
